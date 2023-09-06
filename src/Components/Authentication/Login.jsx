@@ -3,9 +3,11 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../Redux/UserSlice';
+import { useEffect } from 'react';
 
 const Login = () => {
 	const loading = useSelector((state) => state.user.loginLoading);
+	const user = useSelector((state) => state.user.user);
 	const {
 		register,
 		formState: { errors },
@@ -14,10 +16,17 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (user) {
+			navigate('/');
+		}
+	}, [user]);
+
+	// a function to handle the login
 	const handleSignIn = async (data) => {
 		const resp = await dispatch(login(data));
 		console.log(resp);
-		if (resp?.payload?.status?.code === 200) {
+		if (resp?.payload?.code === 200) {
 			navigate('/');
 		}
 	};

@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const baseUrl = import.meta.env.VITE_API_KEY;
+const baseUrl = 'https://budget-management-app-w5ih.onrender.com/api/v1';
+// const baseUrl = import.meta.env.VITE_API_KEY;
 
 const initialState = {
 	budgets: [],
@@ -21,30 +23,62 @@ const initialState = {
 	deleteError: '',
 };
 
+const getAuthToken = () => {
+	return Cookies.get('authorization');
+};
+
 export const fetchBudgets = createAsyncThunk('budgets/fetchBudgets', async () => {
-	const { data } = await axios.get(`${baseUrl}/budgetlists/`);
+	const token = getAuthToken();
+	console.log(token);
+	const { data } = await axios.get(`${baseUrl}/budgetlists/`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 	return data;
 });
 
 export const fetchSingleBudget = createAsyncThunk('budgets/fetchSingleBudget', async (id) => {
-	const { data } = await axios.get(`${baseUrl}/budgetlists/${id}`);
+	const token = getAuthToken();
+	const { data } = await axios.get(`${baseUrl}/budgetlists/${id}`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 	return data;
 });
 
 export const createBudget = createAsyncThunk('budgets/createBudget', async (budget) => {
-	const { data } = await axios.post(`${baseUrl}/budgetlists`, { budget });
+	const token = getAuthToken();
+	const { data } = await axios.post(`${baseUrl}/budgetlists`, {
+		budget,
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 	console.log(data);
 	return data;
 });
 
 export const updateBudget = createAsyncThunk('budgets/updateBudget', async (budget) => {
+	const token = getAuthToken();
 	console.log(budget);
-	const { data } = await axios.put(`${baseUrl}/budgetlists/${budget?.id}`, { budget });
+	const { data } = await axios.put(`${baseUrl}/budgetlists/${budget?.id}`, {
+		budget,
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 	return data;
 });
 
 export const deleteBudget = createAsyncThunk('budgets/deleteBudget', async (id) => {
-	const { data } = await axios.delete(`${baseUrl}/budgetlists/${id}`);
+	const token = getAuthToken();
+	const { data } = await axios.delete(`${baseUrl}/budgetlists/${id}`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 	return data;
 });
 
@@ -99,9 +133,8 @@ const budgetSlice = createSlice({
 			})
 			.addCase(createBudget.fulfilled, (state, action) => {
 				state.createLoading = false;
-				console.log(action.payload);
-				state.budget = state.budgets.unshift(action.payload);
-				state.tableItems = state.tableItems.unshift(action.payload);
+				state.budgets.unshift(action.payload);
+				state.tableItems.unshift(action.payload);
 				state.createError = '';
 			})
 			.addCase(createBudget.rejected, (state, action) => {

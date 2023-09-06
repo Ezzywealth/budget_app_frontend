@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BudgetTable Component renders Budget component correctly 1`] = `
+<DocumentFragment>
+  <main
+    class="w-full h-full flex"
+  >
+    <main
+      class="flex flex-col justify-center h-screen"
+    >
+      <section>
+        <div
+          class="flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid"
+        >
+          <p
+            class="text-[#0B101A] text-[20px] leading-[24px] font-semibold"
+          >
+            Wed Sep 06 2023 Budget 
+            <span
+              class="text-[#5A616A]"
+            >
+               (0 Budgets | 10 pending approval)
+            </span>
+          </p>
+          <div
+            class=" flex items-center gap-1 "
+          >
+            <select
+              class="capitalize"
+              id="approval_status"
+              name="Approval Status"
+            >
+              <option
+                class="transition-all duration-300 ease-linear"
+                disabled=""
+                selected=""
+              >
+                Approval Status
+              </option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <section
+        class="flex justify-between items-center mt-[12.37px]"
+      >
+        <button
+          class="border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]"
+        >
+          Add Budget
+        </button>
+        <div
+          class="flex justify-between items-center gap-1"
+        >
+          <button
+            class="border py-1 text-white px-[16px] bg-[#2A3958] rounded-[10px]"
+          >
+            Save
+          </button>
+        </div>
+      </section>
+      <div
+        class="w-full flex justify-center mt-4"
+      >
+        <table
+          class="table-fixed  w-[700px] border-separate border-spacing-0 border border-slate-200 "
+        >
+          <thead>
+            <tr
+              class="bg-[#EEF0F4]  divide-gray-50"
+            >
+              <th
+                class="px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em]"
+              >
+                BudgetId 
+              </th>
+              <th
+                class="px-6 py-3 text-center text-base font-semibold text-[#222222] uppercase tracking-[0.04em] font-pretendard"
+              >
+                Name
+              </th>
+              <th
+                class="px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard"
+              >
+                Amount
+              </th>
+              <th
+                class="px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard"
+              >
+                Status
+              </th>
+              <th
+                class="px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em] font-pretendard"
+              >
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y relative transition-all ease-linear duration-300"
+          >
+            <tr
+              class="flex mb-80 justify-center items-center"
+            >
+              <td
+                class="text-center "
+                colspan="9"
+              >
+                <div
+                  class="flex justify-center absolute w-full h-[300px] top-0 left-0  font-pretendard items-center "
+                >
+                  No search results found
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="bg-[#F1F3F5] flex justify-center w-full"
+      >
+        <section
+          class="flex"
+        >
+          <span
+            class="flex items-center"
+          >
+            <svg
+              class="text-xl text-[#9599A1]  cursor-pointer"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6z"
+              />
+              <path
+                d="M11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"
+              />
+            </svg>
+            <svg
+              class="text-xl text-[#9599A1]  cursor-pointer"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+              />
+            </svg>
+          </span>
+          <div
+            class="flex items-center mx-4 gap-1 p-[12px]"
+          />
+          <span
+            class="flex items-center"
+          >
+            <svg
+              class="text-xl text-[#9599A1]  cursor-pointer"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+              />
+            </svg>
+            <svg
+              class="text-xl text-[#9599A1] cursor-pointer "
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6z"
+              />
+              <path
+                d="M13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
+              />
+            </svg>
+          </span>
+        </section>
+      </div>
+    </main>
+  </main>
+</DocumentFragment>
+`;

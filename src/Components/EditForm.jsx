@@ -17,7 +17,7 @@ const EditForm = ({ budget, setStartEdit }) => {
 	const dispatch = useDispatch();
 
 	// a function to update the form details at the backend
-	const updateBudget = async (data) => {
+	const handleUpdateBudget = async (data) => {
 		const result = await dispatch(updateBudget({ ...data, id: budget.id }));
 		if (result?.payload?.success) {
 			setStartEdit(false);
@@ -32,7 +32,7 @@ const EditForm = ({ budget, setStartEdit }) => {
 					</button>
 				</div>
 				<h2 className='text-3xl mb-4 text-center font-extrabold text-gray-900'>Update Budget</h2>
-				<form onSubmit={handleSubmit(updateBudget)} className='grid grid-cols-2 p-4 gap-4'>
+				<form onSubmit={handleSubmit(handleUpdateBudget)} className='grid grid-cols-2 p-4 gap-4'>
 					<div>
 						<label className='block mb-2 text-base font-semibold text-gray-600 text-start'>Name</label>
 						<input

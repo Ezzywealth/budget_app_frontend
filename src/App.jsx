@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { fetchBudgets } from './Redux/BudgetSlice';
 function App() {
 	const dispatch = useDispatch();
-
 	useEffect(() => {
 		dispatch(fetchBudgets());
 	}, []);

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../Redux/UserSlice';
 
 const Signup = () => {
@@ -12,10 +12,16 @@ const Signup = () => {
 		handleSubmit,
 	} = useForm();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const handleSignup = (data) => {
-		dispatch(signup(data));
+	// a function to handle the signup
+	const handleSignup = async (data) => {
+		const resp = await dispatch(signup(data));
+		if (resp?.payload?.status?.code === 200) {
+			navigate('/');
+		}
 	};
+
 	return (
 		<section className='h-screen p-4 pt-[80px] laptop:px-20 overflow-auto  flex justify-center items-center w-full   '>
 			<div className='w-full relative flex justify-center'>

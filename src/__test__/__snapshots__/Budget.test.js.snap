@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Budget renders Budget component correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="w-full py-4 flex items-center h-screen"
+  >
+    <div
+      class="bg-gray-500 mx-4  flex flex-col w-full justify-center py-6 px-4 lg:px-8"
+    >
+      <div
+        class="mt-8 mx-auto w-full"
+      >
+        <div
+          class="bg-white py-8 px-2 shadow sm:rounded-lg w-[360px] md:w-[500px]"
+        >
+          <h2
+            class="text-3xl text-center font-extrabold text-gray-900"
+          >
+            Budget Details
+          </h2>
+          <div
+            class="mt-6"
+          >
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Name
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Amount
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              >
+                $
+              </dd>
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Status
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Category
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Allow Overspending
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              >
+                No
+              </dd>
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Start Date
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                End Date
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+            <div
+              class="flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3"
+            >
+              <dt
+                class="text-lg text-gray-500 font-semibold "
+              >
+                Note
+              </dt>
+              <dd
+                class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class=" flex flex-col md:flex-row gap-4 px-4 my-4 md:gap-20 justify-between mt-4"
+        >
+          <button
+            class="w-full text-white bg-[#a3915a] font-medium rounded-lg flex justify-center focus:outline-none items-center px-4 py-2 tracking-wider text-xl text-center transition-all duration-300 ease-linear"
+          >
+            <span>
+               Edit Budget
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

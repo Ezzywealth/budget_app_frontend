@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const baseUrl = import.meta.env.VITE_API_KEY;
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+const baseUrl = 'https://budget-management-app-w5ih.onrender.com/api/v1';
+// const baseUrl = import.meta.env.VITE_API_KEY;
 const initialState = {
 	user: null,
 	signupLoading: false,
@@ -10,32 +13,41 @@ const initialState = {
 };
 
 export const signup = createAsyncThunk('user/signup', async (user) => {
-	const { data } = await axios.post(`${baseUrl}/signup`, { user });
-	console.log(data);
-	return data;
+	const response = await axios.post(`${baseUrl}/signup`, { user });
+	console.log(response);
+	return response;
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
 	const response = await axios.post(`${baseUrl}/login`, { user });
 	const { data } = response;
-	console.log(response);
-	localStorage.setItem('authorization', JSON.stringify(response.headers.authorization));
-	// localStorage.setItem('user', JSON.stringify(data.data.user));
-	console.log(data);
-	return data;
+	if (response.status === 200) {
+		Cookies.set('authorization', response?.headers?.authorization.split(' ')[1], { expires: 3 });
+		Cookies.set('user', JSON.stringify(data?.status?.data?.user), { expires: 3 });
+	}
+	return data.status;
 });
 
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+		setUser: (state) => {
+			state.user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(signup.pending, (state) => {
 			state.signupLoading = true;
 		});
 		builder.addCase(signup.fulfilled, (state, action) => {
-			state.user = action.payload;
+			toast.success('Sign up successful');
+			const response = action.payload;
+			const { data } = response;
+			state.user = data.user;
 			state.signupLoading = false;
+			localStorage.setItem('authorization', JSON.stringify(response?.headers.authorization));
+			localStorage.setItem('user', JSON.stringify(data?.data.user));
 			state.signupError = '';
 		});
 		builder.addCase(signup.rejected, (state, action) => {
@@ -47,11 +59,15 @@ export const userSlice = createSlice({
 			state.loginLoading = true;
 		});
 		builder.addCase(login.fulfilled, (state, action) => {
-			state.user = action?.payload?.user;
+			toast.success('Signin successful');
+			const data = action.payload;
+			state.user = data?.user;
 			state.loginLoading = false;
 			state.loginError = '';
 		});
-		builder.addCase(login.rejected, (state) => {
+		builder.addCase(login.rejected, (state, action) => {
+			console.log(action.payload);
+			toast.error('There was an error, try again');
 			state.user = null;
 			state.loginLoading = false;
 		});
@@ -59,3 +75,4 @@ export const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { setUser } = userSlice.actions;

@@ -1,18 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteBudget, fetchSingleBudget } from '../Redux/BudgetSlice';
-
+import { fetchSingleBudget } from '../Redux/BudgetSlice';
 import EditForm from './EditForm';
 import { RotatingLines } from 'react-loader-spinner';
+
 const Budget = () => {
 	const navigate = useNavigate();
 	const budget = useSelector((state) => state.budget.selectedBudget);
+	const user = useSelector((state) => state.user.user);
 	const budgetLoading = useSelector((state) => state.budget.budgetLoading);
-	const deleteLoading = useSelector((state) => state.budget.deleteLoading);
 	const [startEdit, setStartEdit] = useState(false);
 	const { budgetId } = useParams();
 	const dispatch = useDispatch();
+
+	// an effect to check if the user is logged in
+	useEffect(() => {
+		if (!user) {
+			navigate('/login');
+		}
+	}, [navigate, user]);
 
 	// useEffect to fetch a single budget details
 	useEffect(() => {
@@ -25,13 +32,6 @@ const Budget = () => {
 	};
 
 	// a function to delete the budget
-	const handleDelete = async () => {
-		const resp = await dispatch(deleteBudget(budgetId));
-		console.log(resp);
-		if (resp?.payload?.success) {
-			navigate('/');
-		}
-	};
 
 	return (
 		<section className='w-full py-4 flex items-center h-screen'>
@@ -72,25 +72,18 @@ const Budget = () => {
 								</div>
 								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
 									<dt className='text-lg text-gray-500 font-semibold '>End Date</dt>
-									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-										<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.start_date}</dd>
-									</dd>
+									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.end_date}</dd>
 								</div>
 								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
 									<dt className='text-lg text-gray-500 font-semibold '>Note</dt>
-									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-										<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.notes}</dd>
-									</dd>
+									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.notes}</dd>
 								</div>
 							</div>
 						)}
 					</div>
 					<div className=' flex flex-col md:flex-row gap-4 px-4 my-4 md:gap-20 justify-between mt-4'>
 						<button className='w-full text-white bg-[#a3915a] font-medium rounded-lg flex justify-center focus:outline-none items-center px-4 py-2 tracking-wider text-xl text-center transition-all duration-300 ease-linear' onClick={editBudget}>
-							Edit Budget
-						</button>
-						<button className='w-full text-white bg-[#d60024] font-medium rounded-lg flex justify-center focus:outline-none items-center px-4 py-2 tracking-wider text-xl text-center transition-all duration-300 ease-linear' onClick={handleDelete}>
-							{deleteLoading ? <RotatingLines strokeColor='#d60024' strokeWidth='5' animationDuration='0.75' width='30' visible={true} /> : <span>Delete Budget</span>}
+							<span> Edit Budget</span>
 						</button>
 					</div>
 				</div>
