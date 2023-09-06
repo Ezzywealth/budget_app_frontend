@@ -34,11 +34,11 @@ const Budget = () => {
 	// a function to delete the budget
 
 	return (
-		<section className='w-full py-4 flex items-center h-screen'>
+		<section className='w-full py-4 flex items-center mt-32 md:10'>
 			{startEdit && <EditForm budget={budget} setStartEdit={setStartEdit} />}
-			<div className='bg-gray-500 mx-4  flex flex-col w-full justify-center py-6 px-4 lg:px-8'>
+			<div className='bg-gray-500  flex flex-col w-full justify-center py-6 px-4 lg:px-8'>
 				<div className='mt-8 mx-auto w-full'>
-					<div className='bg-white py-8 px-2 shadow sm:rounded-lg w-[360px] md:w-[500px]'>
+					<div className='bg-white py-8 px-2 shadow sm:rounded-lg w-[340px] md:w-[500px]'>
 						<h2 className='text-3xl text-center font-extrabold text-gray-900'>Budget Details</h2>
 						{budgetLoading ? (
 							<div className='flex justify-center h-[500px]'>
@@ -46,35 +46,35 @@ const Budget = () => {
 							</div>
 						) : (
 							<div className='mt-6'>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Name</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.name}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Amount</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>${budget?.amount?.toFixed(2)}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Status</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.status}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Category</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.category}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Allow Overspending</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.allow_overspending ? 'Yes' : 'No'}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Start Date</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.start_date}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>End Date</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.end_date}</dd>
 								</div>
-								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-3'>
+								<div className='flex justify-between items-center sm:gap-4 sm:px-6 sm:py-1'>
 									<dt className='text-lg text-gray-500 font-semibold '>Note</dt>
 									<dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{budget?.notes}</dd>
 								</div>
