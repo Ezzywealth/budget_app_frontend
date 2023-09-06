@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
 	return (
 		<main className='w-full flex overflow-auto flex-col items-center'>
 			<Navbar />
-			<section> {children}</section>
+			<section>{children}</section>
 		</main>
 	);
 };

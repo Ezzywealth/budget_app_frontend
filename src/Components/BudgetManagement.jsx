@@ -13,10 +13,10 @@ const BudgetManagement = () => {
 		if (!user) {
 			navigate('/login');
 		}
-	}, [navigate, user]);
+	}, [user]);
 
 	return (
-		<main className='flex flex-col mt-16 w-full px-4 h-screen'>
+		<main className='flex overflow-x-auto flex-col mt-20 w-full px-4 h-screen'>
 			<TableHeader />
 			<BudgetTable />
 			<Pagination />

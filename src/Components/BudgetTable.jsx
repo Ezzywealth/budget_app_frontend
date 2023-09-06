@@ -2,6 +2,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteBudget } from '../Redux/BudgetSlice';
+import { useState } from 'react';
 
 const BudgetTable = () => {
 	const tableItems = useSelector((state) => state.budget.tableItems);
@@ -10,6 +11,7 @@ const BudgetTable = () => {
 	const deleteLoading = useSelector((state) => state.budget.deleteLoading);
 	const startCount = useSelector((state) => state.budget.startCount);
 	const endCount = useSelector((state) => state.budget.endCount);
+	const [activeId, setActive] = useState(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -19,6 +21,7 @@ const BudgetTable = () => {
 	};
 
 	const handleDelete = async (id) => {
+		setActive(id);
 		const resp = await dispatch(deleteBudget(id));
 		console.log(resp);
 		if (resp?.payload?.success) {
@@ -73,8 +76,8 @@ const BudgetTable = () => {
 										</button>
 									</td>
 									<td className='px-6  py-4 align-middle whitespace-nowrap border border-b-0 border-l-0 border-r-0 border-slate-300'>
-										<button id='button' className='w-full text-white bg-[#d60024] font-normal rounded-lg flex justify-center focus:outline-none items-center px-4 py-1 tracking-wider text-sm text-center transition-all duration-300 ease-linear' onClick={() => handleDelete(budget?.id)}>
-											{deleteLoading ? <RotatingLines strokeColor='#d60024' strokeWidth='5' animationDuration='0.75' width='30' visible={true} /> : 'Remove'}
+										<button id='button' className='w-full text-white bg-[#d60024] font-normal rounded-lg flex justify-center focus:outline-none items-center px-5 py-1 tracking-wider text-sm text-center transition-all duration-300 ease-linear' onClick={() => handleDelete(budget?.id)}>
+											{deleteLoading && activeId === budget.id ? <RotatingLines strokeColor='#ffffff' strokeWidth='5' animationDuration='0.75' width='20' visible={true} /> : 'Remove'}
 										</button>
 									</td>
 								</tr>

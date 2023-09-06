@@ -3,7 +3,6 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-  - [Kanban](#kanban-board)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
@@ -48,7 +47,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Clike Here!!!](https://budget-app-mg.vercel.app/)
+- [Clike Here!!!](https://budget-app-frontend-omega.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,6 +126,7 @@ You can deploy this project by:
 - [ ] **[jwt authentication]**
 - [ ] **[Good UI Design]**
 - [ ] **[Budget History page]**
+- [ ] **[Better Responsiveness]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
