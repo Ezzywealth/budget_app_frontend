@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 const Layout = ({ children }) => {
 	const dispatch = useDispatch();
 
+	// effect to get the user from the cookies when the application runs
 	useEffect(() => {
 		dispatch(setUser());
 	}, []);

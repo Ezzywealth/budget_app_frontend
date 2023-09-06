@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+// i had issues import the env variables during test, so i had to manually use the endpoint for the test to pass
 const baseUrl = 'https://budget-management-app-w5ih.onrender.com/api/v1';
 // const baseUrl = import.meta.env.VITE_API_KEY;
 
@@ -27,10 +28,12 @@ const initialState = {
 	deleteError: '',
 };
 
+// function to get the authorization headers
 const getAuthToken = () => {
 	return Cookies.get('authorization');
 };
 
+// a function to fetch all budgets
 export const fetchBudgets = createAsyncThunk('budgets/fetchBudgets', async () => {
 	const token = getAuthToken();
 	const { data } = await axios.get(`${baseUrl}/budgetlists/`, {
@@ -41,6 +44,7 @@ export const fetchBudgets = createAsyncThunk('budgets/fetchBudgets', async () =>
 	return data;
 });
 
+// a function to fetch the details of a single budget
 export const fetchSingleBudget = createAsyncThunk('budgets/fetchSingleBudget', async (id) => {
 	const token = getAuthToken();
 	const { data } = await axios.get(`${baseUrl}/budgetlists/${id}`, {
@@ -51,6 +55,7 @@ export const fetchSingleBudget = createAsyncThunk('budgets/fetchSingleBudget', a
 	return data;
 });
 
+// a function to create a new budget
 export const createBudget = createAsyncThunk('budgets/createBudget', async (budget) => {
 	const token = getAuthToken();
 	const { data } = await axios.post(`${baseUrl}/budgetlists`, {
@@ -62,9 +67,9 @@ export const createBudget = createAsyncThunk('budgets/createBudget', async (budg
 	return data;
 });
 
+// a function to update a budget
 export const updateBudget = createAsyncThunk('budgets/updateBudget', async (budget) => {
 	const token = getAuthToken();
-	console.log(budget);
 	const { data } = await axios.put(`${baseUrl}/budgetlists/${budget?.id}`, {
 		budget,
 		headers: {
@@ -74,6 +79,7 @@ export const updateBudget = createAsyncThunk('budgets/updateBudget', async (budg
 	return data;
 });
 
+// a function to delete a budget using the id
 export const deleteBudget = createAsyncThunk('budgets/deleteBudget', async (id) => {
 	const token = getAuthToken();
 	const { data } = await axios.delete(`${baseUrl}/budgetlists/${id}`, {
@@ -88,27 +94,20 @@ const budgetSlice = createSlice({
 	name: 'budget',
 	initialState,
 	reducers: {
-		setTableItems: (state, action) => {
-			state.tableItems = state.budgets.filter((budget) => budget.category === action.payload);
-		},
-		addNewBudget: (state, action) => {
-			const newBudget = action.payload;
-			state.budgets.unshift(newBudget);
-		},
 		toggleBudgetForm: (state) => {
 			state.showBudgetForm = !state.showBudgetForm;
 		},
 		handleNextPage: (state) => {
 			const totalPages = Math.ceil(state.budgets.length / state.noPerPage);
+			// check if we are at the last page
 			if (state.currentPage === totalPages) return;
 			state.startCount = Math.min(state.startCount + state.noPerPage, state.budgets.length);
 			state.endCount = Math.min(state.endCount + state.noPerPage, state.budgets.length);
 			state.tableItems = state.budgets.slice(state.startCount, state.endCount);
 			state.currentPage += 1;
 		},
-
 		handlePrevPage: (state) => {
-			console.log('prev');
+			//check if we are at the first page
 			if (state.currentPage === 1) return;
 			state.startCount = Math.max(state.startCount - state.noPerPage, 0);
 			state.endCount = Math.max(state.endCount - state.noPerPage, state.noPerPage);
@@ -194,4 +193,4 @@ const budgetSlice = createSlice({
 });
 
 export default budgetSlice.reducer;
-export const { addNewBudget, selectBudget, toggleBudgetForm, handlePrevPage, handleNextPage } = budgetSlice.actions;
+export const { toggleBudgetForm, handlePrevPage, handleNextPage } = budgetSlice.actions;

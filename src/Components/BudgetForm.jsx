@@ -15,6 +15,7 @@ const BudgetForm = () => {
 	const [loading, setLoading] = useState(createLoading);
 	const dispatch = useDispatch();
 
+	// a function to dispatch the add budget reducer
 	const addBudget = async (data) => {
 		dispatch(createBudget(data));
 		dispatch(toggleBudgetForm());

@@ -5,6 +5,8 @@ import { setUser } from '../Redux/UserSlice';
 const Navbar = () => {
 	const user = useSelector((state) => state.user.user);
 	const dispatch = useDispatch();
+
+	// function to handle logout
 	const handleLogout = () => {
 		Cookies.remove('authorization');
 		Cookies.remove('user');

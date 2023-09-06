@@ -12,12 +12,14 @@ const initialState = {
 	loginError: '',
 };
 
+// function to signup a user to the application
 export const signup = createAsyncThunk('user/signup', async (user) => {
 	const response = await axios.post(`${baseUrl}/signup`, { user });
 	console.log(response);
 	return response;
 });
 
+// function to login a user to the application
 export const login = createAsyncThunk('user/login', async (user) => {
 	const response = await axios.post(`${baseUrl}/login`, { user });
 	const { data } = response;

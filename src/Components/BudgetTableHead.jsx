@@ -7,14 +7,9 @@ import BudgetForm from './BudgetForm';
 /* eslint-disable react/prop-types */
 
 const TableHeader = () => {
-	const tableItems = useSelector((state) => state.budget.tableItems);
 	const budgets = useSelector((state) => state.budget.budgets);
 	const showBudgetForm = useSelector((state) => state.budget.showBudgetForm);
 	const dispatch = useDispatch();
-	// function to handle the sorting lists by application and approval date
-	const handleDateSort = (date) => {
-		console.log(date);
-	};
 
 	return (
 		<main className='w-full'>
