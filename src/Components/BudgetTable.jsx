@@ -5,6 +5,7 @@ import { deleteBudget } from '../Redux/BudgetSlice';
 
 const BudgetTable = () => {
 	const tableItems = useSelector((state) => state.budget.tableItems);
+	const budgets = useSelector((state) => state.budget.budgets);
 	const budgetLoading = useSelector((state) => state.budget.budgetsLoading);
 	const deleteLoading = useSelector((state) => state.budget.deleteLoading);
 	const startCount = useSelector((state) => state.budget.startCount);
@@ -51,10 +52,10 @@ const BudgetTable = () => {
 								</td>
 							</tr>
 						) : (
-							tableItems?.slice(startCount, endCount)?.map((budget, ind) => (
+							budgets?.slice(startCount, endCount)?.map((budget) => (
 								<tr key={budget.id} className={`cursor-pointer ${budget?.selected === true ? 'bg-[#F9F9FB]' : ''}`}>
 									<td className='px-6 py-4 text-center whitespace-nowrap border border-b-0 border-l-0  border-r-0 border-slate-300'>
-										<dd className='text-sm text-[#222222] font-medium leading-[18px]'>{ind + 1}</dd>
+										<dd className='text-sm text-[#222222] font-medium leading-[18px]'>{budget.id}</dd>
 									</td>
 									<td className='px-6  py-4  whitespace-nowrap border border-b-0 border-l-0 border-r-0 border-slate-300'>
 										<h3 className='text-sm text-center text-[#222222] font-medium leading-[18px]'>{budget?.name}</h3>

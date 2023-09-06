@@ -99,7 +99,6 @@ const budgetSlice = createSlice({
 			state.showBudgetForm = !state.showBudgetForm;
 		},
 		handleNextPage: (state) => {
-			console.log('next');
 			const totalPages = Math.ceil(state.budgets.length / state.noPerPage);
 			if (state.currentPage === totalPages) return;
 			state.startCount = Math.min(state.startCount + state.noPerPage, state.budgets.length);

@@ -4,8 +4,9 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleNextPage, handlePrevPage } from '../Redux/BudgetSlice';
 const Pagination = () => {
-	const tableItems = useSelector((state) => state.budget.tableItems);
-	const numberOfPages = Math.ceil(tableItems?.length / 5);
+	const budgets = useSelector((state) => state.budget.budgets);
+	const numberOfPages = Math.ceil(budgets?.length / 5);
+	const currentPage = useSelector((state) => state.budget.currentPage);
 	const dispatch = useDispatch();
 	// Function to handle the jump to the page number clicked
 
@@ -29,7 +30,7 @@ const Pagination = () => {
 					{
 						//convert the number of pages to an array
 						[...Array(Math.ceil(numberOfPages))].map((item, ind) => (
-							<button key={ind} className={`font-bold transition-all ease-linear duration-300 text-[16px] cursor-pointer h-8 w-8 flex items-center text-base gap-4 justify-center `}>
+							<button key={ind} className={`font-bold transition-all ease-linear duration-300 text-[16px] cursor-pointer h-8 w-8 flex items-center text-base gap-4 justify-center ${currentPage === ind + 1 && 'bg-blue-950 text-white'} `}>
 								{ind + 1}
 							</button>
 						))
