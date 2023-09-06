@@ -11,7 +11,7 @@ const Navbar = () => {
 		dispatch(setUser());
 	};
 	return (
-		<nav className='bg-blue-900 fixed top-0 left-0 shadow-lg w-full md:w-screen p-4'>
+		<nav className='bg-blue-950 fixed top-0 left-0 shadow-lg w-full md:w-screen p-8'>
 			<div className=' flex justify-between items-center'>
 				<h1 className='text-base md:text-2xl text-white font-semibold'>Bugdet Management</h1>
 				<ul className='flex space-x-4'>
