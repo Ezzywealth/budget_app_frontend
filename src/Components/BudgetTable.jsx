@@ -27,7 +27,7 @@ const BudgetTable = () => {
 
 	return (
 		<div className='w-full flex overflow-auto justify-center mt-4'>
-			<table className='table-fixed  w-[700px] border-separate border-spacing-0 border border-slate-200 '>
+			<table className='table-fixed w-full  md:w-[700px] border-separate border-spacing-0 border border-slate-200 '>
 				<thead>
 					<tr className='bg-[#EEF0F4]  divide-gray-50'>
 						<th className='px-6 py-3 text-center text-base text-[#222222] font-semibold uppercase tracking-[0.04em]'>BudgetId </th>
@@ -39,7 +39,7 @@ const BudgetTable = () => {
 					</tr>
 				</thead>
 				{budgetLoading ? (
-					<dd className='flex w-full md:w-[600px] justify-center h-[500px]'>
+					<dd className='flex w-full md:w-[700px] justify-center h-[500px]'>
 						<RotatingLines strokeColor='#00d690' strokeWidth='5' animationDuration='0.75' width='60' visible={true} />
 					</dd>
 				) : (
@@ -47,7 +47,7 @@ const BudgetTable = () => {
 						{tableItems?.length < 1 ? (
 							<tr className='flex mb-80 justify-center items-center'>
 								<td className='text-center ' colSpan={9}>
-									<dd className='flex justify-center absolute w-full h-[300px] top-0 left-0  font-pretendard items-center '>No search results found</dd>
+									<h5 className='flex justify-center absolute w-full h-[300px] top-0 left-0  font-pretendard items-center '>You don&apos;t have any budget</h5>
 								</td>
 							</tr>
 						) : (

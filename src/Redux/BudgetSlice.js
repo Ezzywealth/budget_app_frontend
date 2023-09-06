@@ -100,17 +100,19 @@ const budgetSlice = createSlice({
 		},
 		handleNextPage: (state) => {
 			console.log('next');
-			if (state.currentPage === Math.ceil(state.budgets.length / state.noPerPage)) return;
-			state.startCount += state.noPerPage - 1;
-			state.endCount += state.noPerPage;
+			const totalPages = Math.ceil(state.budgets.length / state.noPerPage);
+			if (state.currentPage === totalPages) return;
+			state.startCount = Math.min(state.startCount + state.noPerPage, state.budgets.length);
+			state.endCount = Math.min(state.endCount + state.noPerPage, state.budgets.length);
 			state.tableItems = state.budgets.slice(state.startCount, state.endCount);
 			state.currentPage += 1;
 		},
+
 		handlePrevPage: (state) => {
 			console.log('prev');
 			if (state.currentPage === 1) return;
-			state.startCount -= state.noPerPage;
-			state.endCount -= state.noPerPage;
+			state.startCount = Math.max(state.startCount - state.noPerPage, 0);
+			state.endCount = Math.max(state.endCount - state.noPerPage, state.noPerPage);
 			state.tableItems = state.budgets.slice(state.startCount, state.endCount);
 			state.currentPage -= 1;
 		},

@@ -8,6 +8,7 @@ import BudgetForm from './BudgetForm';
 
 const TableHeader = () => {
 	const tableItems = useSelector((state) => state.budget.tableItems);
+	const budgets = useSelector((state) => state.budget.budgets);
 	const showBudgetForm = useSelector((state) => state.budget.showBudgetForm);
 	const dispatch = useDispatch();
 	// function to handle the sorting lists by application and approval date
@@ -16,12 +17,12 @@ const TableHeader = () => {
 	};
 
 	return (
-		<>
+		<main className='w-full'>
 			<section>
 				{showBudgetForm && <BudgetForm />}
 				<div className='flex justify-between pt-[45px] pb-[12px] items-center box-border border-b border-[#D7D8DA] border-solid'>
 					<p className='text-[#0B101A] text-[20px] leading-[24px] font-semibold'>
-						{new Date().toLocaleString('default', { month: 'long' })} Budget <span className='text-[#5A616A]'> ({`${tableItems.length} Budget${tableItems.length > 1 ? 's' : ''}`})</span>
+						{new Date().toLocaleString('default', { month: 'long' })} Budget <span className='text-[#5A616A]'> ({`${budgets.length} Budget${budgets.length > 1 ? 's' : ''}`})</span>
 					</p>
 					<div className=' flex items-center gap-1 '></div>
 				</div>
@@ -31,7 +32,7 @@ const TableHeader = () => {
 					Add Budget
 				</button>
 			</section>
-		</>
+		</main>
 	);
 };
 
