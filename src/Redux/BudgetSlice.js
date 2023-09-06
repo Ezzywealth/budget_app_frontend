@@ -9,6 +9,10 @@ const initialState = {
 	budgets: [],
 	budget: {},
 	tableItems: [],
+	noPerPage: 5,
+	currentPage: 1,
+	startCount: 0,
+	endCount: 5,
 	selectedBudget: {},
 	showBudgetForm: false,
 	budgetsLoading: false,
@@ -29,7 +33,6 @@ const getAuthToken = () => {
 
 export const fetchBudgets = createAsyncThunk('budgets/fetchBudgets', async () => {
 	const token = getAuthToken();
-	console.log(token);
 	const { data } = await axios.get(`${baseUrl}/budgetlists/`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -56,7 +59,6 @@ export const createBudget = createAsyncThunk('budgets/createBudget', async (budg
 			Authorization: `Bearer ${token}`,
 		},
 	});
-	console.log(data);
 	return data;
 });
 
@@ -95,6 +97,22 @@ const budgetSlice = createSlice({
 		},
 		toggleBudgetForm: (state) => {
 			state.showBudgetForm = !state.showBudgetForm;
+		},
+		handleNextPage: (state) => {
+			console.log('next');
+			if (state.currentPage === Math.ceil(state.budgets.length / state.noPerPage)) return;
+			state.startCount += state.noPerPage - 1;
+			state.endCount += state.noPerPage;
+			state.tableItems = state.budgets.slice(state.startCount, state.endCount);
+			state.currentPage += 1;
+		},
+		handlePrevPage: (state) => {
+			console.log('prev');
+			if (state.currentPage === 1) return;
+			state.startCount -= state.noPerPage;
+			state.endCount -= state.noPerPage;
+			state.tableItems = state.budgets.slice(state.startCount, state.endCount);
+			state.currentPage -= 1;
 		},
 	},
 	extraReducers: (builder) => {
@@ -175,4 +193,4 @@ const budgetSlice = createSlice({
 });
 
 export default budgetSlice.reducer;
-export const { addNewBudget, selectBudget, toggleBudgetForm } = budgetSlice.actions;
+export const { addNewBudget, selectBudget, toggleBudgetForm, handlePrevPage, handleNextPage } = budgetSlice.actions;

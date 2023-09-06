@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../Redux/UserSlice';
+import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
 	const dispatch = useDispatch();
@@ -10,7 +11,12 @@ const Layout = ({ children }) => {
 		dispatch(setUser());
 	}, []);
 
-	return <main>{children}</main>;
+	return (
+		<main className='w-full flex overflow-auto flex-col items-center'>
+			<Navbar />
+			<section> {children}</section>
+		</main>
+	);
 };
 
 export default Layout;

@@ -16,7 +16,7 @@ const BudgetManagement = () => {
 	}, [navigate, user]);
 
 	return (
-		<main className='flex flex-col justify-center h-screen'>
+		<main className='flex flex-col mt-12 w-full h-screen'>
 			<TableHeader />
 			<BudgetTable />
 			<Pagination />

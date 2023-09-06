@@ -8,6 +8,7 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchBudgets());
 	}, []);
+
 	return (
 		<main className='w-full h-full flex'>
 			<BudgetManagement />

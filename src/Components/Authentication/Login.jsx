@@ -27,7 +27,7 @@ const Login = () => {
 		const resp = await dispatch(login(data));
 		console.log(resp);
 		if (resp?.payload?.code === 200) {
-			navigate('/');
+			window.location.href = '/';
 		}
 	};
 	return (
